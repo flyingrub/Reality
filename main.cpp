@@ -1,12 +1,14 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 
+#include <chrono>
+#include <thread>
 #include <QDir>
 #include <QDebug>
 #include <QMovie>
 #include <QLabel>
 
-
+#include <future>
 #include <string>
 #include <iostream>
 #include <vector>
@@ -16,6 +18,7 @@
 using namespace std;
 
 QStringList gifs;
+QMovie *movie;
 
 random_device seeder;
 mt19937 engine(seeder());
@@ -59,8 +62,7 @@ int main(int argc, char *argv[])
     // if(load_qt_app()) return -1;
 
     QLabel label;
-    QMovie *movie = new QMovie("gif/" + get_random_gif());
-    movie->setFileName("gif/" + get_random_gif());
+    QMovie *movie = new QMovie("../gif/" + get_random_gif());
 
     label.setMovie(movie);
     movie->start();
